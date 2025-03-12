@@ -1,12 +1,7 @@
 ## Project Context
-A 2D platformer with environmental puzzles, made in Godot 4. Features:
-- Simple platformer movement
-- Avoid detection by certain level elements
-- Interact in different ways to change the structure of the level
-    - Need to solve an environmental puzzle to construct a valid pathway to the end
-- A minigame at the end of each level
-    - Need to rotate "wire nodes" the correct way to connect them, forming a path to the exit
-    - Certain elements create restrictions on the path
+An isometric 2D adventure game with a narrative focus
+- Made in Godot 4.4
+- Uses only GDScript as the scripting language
 
 ## Code Style and Structure
 - Write concise, technical GDScript code with accurate type hinting
@@ -21,7 +16,7 @@ A 2D platformer with environmental puzzles, made in Godot 4. Features:
 ## Naming Conventions
 - Use snake_case for directories/files and variable/function names in scripts
 - Use CamelCase for class/node names
-- Prefix Godot functions (e.g., _process, _physics_process) and signal handlers (e.g., _on_Player_body_entered) with an underscore
+- Prefix Godot functions (e.g., _process, _physics_process) and signal handlers (e.g., _on_body_entered) with an underscore
     - No prefix for own functions (e.g. handle_something)
 - Use type hints
 
@@ -30,25 +25,6 @@ A 2D platformer with environmental puzzles, made in Godot 4. Features:
 - Log errors appropriately for debugging
 - Provide user-friendly error messages
 
-## Git Usage
-Commit Message Prefixes:
-- "fix:" for bug fixes
-- "feat:" for new features
-- "perf:" for performance improvements
-- "docs:" for documentation changes
-- "style:" for formatting changes
-- "refactor:" for code refactoring
-- "chore:" for maintenance tasks
-
-Rules:
-- Use lowercase for commit messages
-- Keep the summary line concise
-- Include description for non-obvious changes
-
 ## Documentation
 - Document code architecture
 - Don't include comments unless it's for complex logic
-
-## Development Workflow
-- Use proper version control
-- Implement proper code review process

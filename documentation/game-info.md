@@ -1,0 +1,25 @@
+- Simple 2D movement
+- Screen fading when switching areas (exiting/entering the cabin)
+- World is fading
+    - Gradually, the world and its objects fade away
+- Body temperature mechanic
+    - Warming up inside the cabin
+    - Losing temperature outside
+- Radio Tuning minigame
+    - Move the cursor to a randomly generated frequency
+    - Successful completion updates the "Locator"
+- Locator
+    - When a frequency is specified, helps locate a "Memory Site"
+    - Beeps with a certain delay
+        - The delay gets shorter the closer the destination
+- Memory Sites
+    - Contain "Echoes"
+    - Purely decorative
+- Echoes
+    - Interacting with an Echo unveils a "Memory"
+    - Emits a sound when nearby
+    - Fades away after interacting
+- Memories
+    - Unveiling a Memory flashes the screen and plays a certain melody
+    - Each Memory unveiled progresses the world's fading
+        - The last Memory unveiled makes the world fade completely

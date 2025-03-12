@@ -24,7 +24,9 @@ texture = ExtResource("2_hrs8c")
 script = ExtResource("2_interactable")
 interaction_prompt = "tune radio"
 
-[node name="RadioMinigameUI" parent="." instance=ExtResource("3_minigame")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RadioMinigameUI" parent="CanvasLayer" instance=ExtResource("3_minigame")]
 
 [connection signal="interacted" from="Interactable" to="." method="_on_interacted"]
-[connection signal="minigame_completed" from="RadioMinigameUI" to="." method="_on_minigame_completed"]
+[connection signal="minigame_completed" from="CanvasLayer/RadioMinigameUI" to="." method="_on_minigame_completed"]

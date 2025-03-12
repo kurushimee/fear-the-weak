@@ -31,18 +31,16 @@ func _process(delta: float) -> void:
 	# Handle cursor acceleration
 	if Input.is_action_pressed("move_left"):
 		# Accelerate left (negative direction)
+		if current_cursor_velocity >= 0.0:
+			current_cursor_velocity = 0.0
 		current_cursor_velocity = maxf(current_cursor_velocity - CURSOR_ACCELERATION * delta, -CURSOR_SPEED)
 	elif Input.is_action_pressed("move_right"):
 		# Accelerate right (positive direction)
+		if current_cursor_velocity <= 0.0:
+			current_cursor_velocity = 0.0
 		current_cursor_velocity = minf(current_cursor_velocity + CURSOR_ACCELERATION * delta, CURSOR_SPEED)
 	else:
 		# Reset to zero when no input
-		# if abs(current_cursor_velocity) < CURSOR_ACCELERATION * delta:
-		# 	current_cursor_velocity = 0.0
-		# elif current_cursor_velocity > 0:
-		# 	current_cursor_velocity -= CURSOR_ACCELERATION * delta
-		# else:
-		# 	current_cursor_velocity += CURSOR_ACCELERATION * delta
 		current_cursor_velocity = 0.0
 
 	# Apply velocity to frequency

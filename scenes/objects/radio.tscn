@@ -27,3 +27,4 @@ interaction_prompt = "tune radio"
 [node name="RadioMinigameUI" parent="." instance=ExtResource("3_minigame")]
 
 [connection signal="interacted" from="Interactable" to="." method="_on_interacted"]
+[connection signal="minigame_completed" from="RadioMinigameUI" to="." method="_on_minigame_completed"]

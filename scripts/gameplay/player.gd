@@ -15,6 +15,7 @@ var is_input_enabled: bool = true
 
 
 func _ready() -> void:
+	instance = self
 	interaction_prompt.visible = false
 
 

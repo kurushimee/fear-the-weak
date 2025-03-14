@@ -1,15 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://jisgdhf1or07"]
+[gd_scene load_steps=2 format=3 uid="uid://jisgdhf1or07"]
 
 [ext_resource type="PackedScene" uid="uid://j8310dctoxdc" path="res://scenes/objects/radio.tscn" id="2_u6nip"]
-[ext_resource type="PackedScene" uid="uid://c3c4tswrdhj0p" path="res://scenes/objects/collectible.tscn" id="3_n4mda"]
 
 [node name="Gym" type="Node2D"]
 
-[node name="Collectible" parent="." instance=ExtResource("3_n4mda")]
-position = Vector2(400, 350)
-
 [node name="Radio" parent="." instance=ExtResource("2_u6nip")]
 position = Vector2(249, 187)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(550, 350)

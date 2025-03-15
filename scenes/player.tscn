@@ -32,12 +32,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_s6siq")
 
-[node name="InteractionRay" type="RayCast2D" parent="."]
-target_position = Vector2(100, 0)
-collision_mask = 4
-hit_from_inside = true
-collide_with_areas = true
-
 [node name="InteractionPrompt" type="Label" parent="."]
 offset_left = -100.0
 offset_top = -100.0
@@ -47,5 +41,5 @@ text = "Press E to interact"
 label_settings = SubResource("LabelSettings_l12u3")
 horizontal_alignment = 1
 
-[connection signal="area_entered" from="InteractionArea" to="." method="_on_area_entered"]
-[connection signal="area_exited" from="InteractionArea" to="." method="_on_area_exited"]
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_body_exited"]

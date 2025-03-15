@@ -50,6 +50,8 @@ func update_interaction() -> void:
 	if current_interactable:
 		interaction_prompt.text = current_interactable.interaction_prompt
 		interaction_prompt.visible = current_interactable.is_active
+	else:
+		interaction_prompt.visible = false
 
 
 ## Returns the nearest `Interactable` in the interaction area.

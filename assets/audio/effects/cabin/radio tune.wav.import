@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ndfs11sp4oyg"
+path="res://.godot/imported/radio tune.wav-965461df58bf576c39a00f1bfd5ade8b.sample"
+
+[deps]
+
+source_file="res://assets/audio/effects/cabin/radio tune.wav"
+dest_files=["res://.godot/imported/radio tune.wav-965461df58bf576c39a00f1bfd5ade8b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

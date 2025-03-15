@@ -7,9 +7,9 @@ const FREQUENCY_MIN: float = 87.5
 const FREQUENCY_MAX: float = 108.0
 const REQUIRED_TIME_ON_FREQUENCY: float = 1.0
 const CURSOR_SPEED: float = 10.0
-const CURSOR_ACCELERATION: float = 50.0 # How quickly the cursor accelerates
+const CURSOR_ACCELERATION: float = 50.0
 const LINE_WIDTH: float = 400.0
-const TARGET_PROXIMITY_THRESHOLD: float = 0.1 # Threshold for being on target
+const TARGET_PROXIMITY_THRESHOLD: float = 0.1 # How long the cursor has to stay on target
 
 var target_frequency: float
 var current_frequency: float
@@ -29,12 +29,12 @@ func _process(delta: float) -> void:
 		return
 
 	# Handle cursor acceleration
-	if Input.is_action_pressed("move_left"):
+	if Input.is_action_pressed(&"move_left"):
 		# Accelerate left (negative direction)
 		if current_cursor_velocity >= 0.0:
 			current_cursor_velocity = 0.0
 		current_cursor_velocity = maxf(current_cursor_velocity - CURSOR_ACCELERATION * delta, -CURSOR_SPEED)
-	elif Input.is_action_pressed("move_right"):
+	elif Input.is_action_pressed(&"move_right"):
 		# Accelerate right (positive direction)
 		if current_cursor_velocity <= 0.0:
 			current_cursor_velocity = 0.0
@@ -50,7 +50,7 @@ func _process(delta: float) -> void:
 	if abs(current_frequency - target_frequency) < TARGET_PROXIMITY_THRESHOLD:
 		time_on_frequency += delta
 		if time_on_frequency >= REQUIRED_TIME_ON_FREQUENCY:
-			_complete_minigame()
+			complete_minigame()
 	else:
 		time_on_frequency = 0.0
 
@@ -72,7 +72,7 @@ func _draw() -> void:
 	var target_pos := Vector2(target_x, size.y / 2)
 
 	# Draw proximity guide
-	var proximity := _calculate_proximity()
+	var proximity := calculate_proximity()
 
 	# Draw proximity circle that grows as player gets closer to target
 	if proximity > 0.0:
@@ -116,7 +116,7 @@ func _draw() -> void:
 			draw_rect(progress_rect, Color.GREEN, true)
 
 
-func _calculate_proximity() -> float:
+func calculate_proximity() -> float:
 	var _distance: float = abs(current_frequency - target_frequency)
 	var max_distance: float = 2.0 # Maximum distance to show any proximity effect
 
@@ -137,16 +137,16 @@ func start_minigame() -> void:
 	is_active = true
 	show()
 	queue_redraw()
-	_update_feedback()
+	update_feedback()
 
 
-func _complete_minigame() -> void:
+func complete_minigame() -> void:
 	is_active = false
 	hide()
 	minigame_completed.emit()
 
 
-func _update_feedback() -> void:
+func update_feedback() -> void:
 	# Use the distance to target frequency for audio feedback
 	var _distance: float = abs(current_frequency - target_frequency)
 	# TODO: Implement audio feedback based on distance to target frequency

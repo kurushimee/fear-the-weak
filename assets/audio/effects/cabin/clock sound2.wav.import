@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://gjdc6yys2e0d"
+path="res://.godot/imported/clock sound2.wav-104253bd29d21533a162697b3fc825d6.sample"
+
+[deps]
+
+source_file="res://assets/audio/effects/cabin/clock sound2.wav"
+dest_files=["res://.godot/imported/clock sound2.wav-104253bd29d21533a162697b3fc825d6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

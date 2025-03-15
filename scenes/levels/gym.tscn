@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://jisgdhf1or07"]
-
-[ext_resource type="PackedScene" uid="uid://j8310dctoxdc" path="res://scenes/objects/radio.tscn" id="2_u6nip"]
-
-[node name="Gym" type="Node2D"]
-
-[node name="Radio" parent="." instance=ExtResource("2_u6nip")]
-position = Vector2(249, 187)

@@ -1,0 +1,99 @@
+[gd_scene load_steps=9 format=3 uid="uid://jisgdhf1or07"]
+
+[ext_resource type="Script" uid="uid://dmgxl3r4odaau" path="res://scripts/levels/cabin.gd" id="1_dg60t"]
+[ext_resource type="AudioStream" uid="uid://dd542u84r4jqo" path="res://assets/audio/music/WINTER1.wav" id="2_p1b40"]
+[ext_resource type="PackedScene" uid="uid://j8310dctoxdc" path="res://scenes/objects/radio.tscn" id="2_u6nip"]
+[ext_resource type="AudioStream" uid="uid://laqdd2i80osj" path="res://assets/audio/effects/cabin/blizzard.wav" id="4_2cbld"]
+[ext_resource type="PackedScene" uid="uid://bvemusqauijyq" path="res://scenes/ui/screen_fade_effect.tscn" id="5_20dta"]
+
+[sub_resource type="Animation" id="Animation_p1b40"]
+resource_name = "fade_in"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-30.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_dg60t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2cbld"]
+_data = {
+&"RESET": SubResource("Animation_dg60t"),
+&"fade_in": SubResource("Animation_p1b40")
+}
+
+[node name="Cabin" type="Node2D" node_paths=PackedStringArray("background_music_ap", "screen_fade_effect")]
+script = ExtResource("1_dg60t")
+background_music_ap = NodePath("BackgroundMusic/AnimationPlayer")
+screen_fade_effect = NodePath("ScreenFadeEffect")
+
+[node name="Radio" parent="." instance=ExtResource("2_u6nip")]
+position = Vector2(-152, -52)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_p1b40")
+bus = &"Music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BackgroundMusic"]
+libraries = {
+&"": SubResource("AnimationLibrary_2cbld")
+}
+
+[node name="StartDelay" type="Timer" parent="BackgroundMusic"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2cbld")
+autoplay = true
+bus = &"Background"
+
+[node name="ScreenFadeEffect" parent="." instance=ExtResource("5_20dta")]
+
+[connection signal="timeout" from="BackgroundMusic/StartDelay" to="." method="_on_start_delay_timeout"]

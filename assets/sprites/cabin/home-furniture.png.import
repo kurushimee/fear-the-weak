@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be124pllwo4ea"
-path="res://.godot/imported/wood-wall.png-11544a05c5599916ac8478f85f2bac04.ctex"
+uid="uid://bvv3wuhgccwgp"
+path="res://.godot/imported/home-furniture.png-001c4be8d261ff7c213313fbd663b1a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/tiles/wood-wall.png"
-dest_files=["res://.godot/imported/wood-wall.png-11544a05c5599916ac8478f85f2bac04.ctex"]
+source_file="res://assets/sprites/cabin/home-furniture.png"
+dest_files=["res://.godot/imported/home-furniture.png-001c4be8d261ff7c213313fbd663b1a9.ctex"]
 
 [params]
 

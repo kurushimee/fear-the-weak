@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://db8f7ng3nmcix"
-path="res://.godot/imported/wood-floor.png-4a639b52fcc0a2c76fa2ccf1462e4ac8.ctex"
+uid="uid://bw5wq06r7c2y0"
+path="res://.godot/imported/snow.png-56cf33f80e19d5ac679fb8f7bfd6db3b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/tiles/wood-floor.png"
-dest_files=["res://.godot/imported/wood-floor.png-4a639b52fcc0a2c76fa2ccf1462e4ac8.ctex"]
+source_file="res://assets/sprites/forest/snow.png"
+dest_files=["res://.godot/imported/snow.png-56cf33f80e19d5ac679fb8f7bfd6db3b.ctex"]
 
 [params]
 

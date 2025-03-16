@@ -1,10 +1,112 @@
-[gd_scene load_steps=9 format=3 uid="uid://jisgdhf1or07"]
+[gd_scene load_steps=15 format=4 uid="uid://jisgdhf1or07"]
 
 [ext_resource type="Script" uid="uid://dmgxl3r4odaau" path="res://scripts/levels/cabin.gd" id="1_dg60t"]
+[ext_resource type="Texture2D" uid="uid://be124pllwo4ea" path="res://assets/sprites/cabin/wood-wall.png" id="2_gs66j"]
 [ext_resource type="AudioStream" uid="uid://dd542u84r4jqo" path="res://assets/audio/music/WINTER1.wav" id="2_p1b40"]
 [ext_resource type="PackedScene" uid="uid://j8310dctoxdc" path="res://scenes/objects/radio.tscn" id="2_u6nip"]
+[ext_resource type="Texture2D" uid="uid://db8f7ng3nmcix" path="res://assets/sprites/cabin/wood-floor.png" id="2_uaq2r"]
 [ext_resource type="AudioStream" uid="uid://laqdd2i80osj" path="res://assets/audio/effects/cabin/blizzard.wav" id="4_2cbld"]
 [ext_resource type="PackedScene" uid="uid://bvemusqauijyq" path="res://scenes/ui/screen_fade_effect.tscn" id="5_20dta"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j712y"]
+texture = ExtResource("2_uaq2r")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_qihlm"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_j712y")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uaq2r"]
+texture = ExtResource("2_gs66j")
+texture_region_size = Vector2i(64, 64)
+0:0/size_in_atlas = Vector2i(1, 2)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 32)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -96, 32, -96, 32, 32, -32, 32)
+1:0/size_in_atlas = Vector2i(1, 2)
+1:0/next_alternative_id = 2
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 32)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -96, 32, -96, 32, 32, -32, 32)
+5:0/size_in_atlas = Vector2i(1, 2)
+5:0/0 = 0
+5:0/0/texture_origin = Vector2i(0, 32)
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -96, 32, -96, 32, 32, -32, 32)
+5:2/0 = 0
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -32, 32, -32, 32, 32, 0, 32)
+0:4/size_in_atlas = Vector2i(1, 2)
+0:4/0 = 0
+0:4/0/texture_origin = Vector2i(0, 32)
+0:4/0/z_index = 1
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -96, 0, -96, 0, 0, 32, 0, 32, 32, -32, 32)
+2:4/size_in_atlas = Vector2i(2, 2)
+2:4/0 = 0
+2:4/0/texture_origin = Vector2i(-32, 32)
+2:4/0/z_index = 1
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 0, 96, 0, 96, 32, -32, 32)
+2:6/size_in_atlas = Vector2i(1, 2)
+2:6/0 = 0
+3:6/size_in_atlas = Vector2i(1, 2)
+3:6/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/size_in_atlas = Vector2i(2, 2)
+4:8/0 = 0
+4:8/0/texture_origin = Vector2i(-32, 32)
+4:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -96, 96, -96, 96, 32, -32, 32)
+2:10/size_in_atlas = Vector2i(1, 2)
+2:10/0 = 0
+3:10/size_in_atlas = Vector2i(1, 2)
+3:10/0 = 0
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 0, -32, 0, 32, -32, 32)
+1:4/size_in_atlas = Vector2i(1, 2)
+1:4/0 = 0
+1:4/0/texture_origin = Vector2i(0, 32)
+1:4/0/z_index = 1
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 0, 32, 0, 32, 32, -32, 32)
+5:4/size_in_atlas = Vector2i(1, 2)
+5:4/0 = 0
+5:4/0/texture_origin = Vector2i(0, 32)
+5:4/0/z_index = 1
+5:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -96, 32, -96, 32, 32, -32, 32, -32, 0, 0, 0)
+
+[sub_resource type="TileSet" id="TileSet_20dta"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_uaq2r")
+
+[sub_resource type="Animation" id="Animation_dg60t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_p1b40"]
 resource_name = "fade_in"
@@ -34,33 +136,6 @@ tracks/1/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_dg60t"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2cbld"]
 _data = {
 &"RESET": SubResource("Animation_dg60t"),
@@ -72,8 +147,19 @@ script = ExtResource("1_dg60t")
 background_music_ap = NodePath("BackgroundMusic/AnimationPlayer")
 screen_fade_effect = NodePath("ScreenFadeEffect")
 
+[node name="TileMaps" type="Node2D" parent="."]
+
+[node name="Floor" type="TileMapLayer" parent="TileMaps"]
+tile_map_data = PackedByteArray("AAACAAIAAAABAAAAAAADAAIAAAABAAEAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAEAAAAEAAQAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAEAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAACAAUAAAAAAAAAAAABAAUAAAAAAAEAAAABAAQAAAABAAAAAAABAAMAAAABAAEAAAABAAIAAAAAAAEAAAAEAAIAAAABAAAAAAAFAAIAAAABAAEAAAAGAAIAAAABAAEAAAAHAAIAAAAAAAEAAAAIAAIAAAABAAEAAAAJAAIAAAAAAAEAAAAKAAIAAAAAAAAAAAALAAIAAAAAAAAAAAAMAAIAAAAAAAEAAAANAAIAAAAAAAEAAAAOAAIAAAAAAAEAAAAPAAIAAAAAAAAAAAAQAAIAAAABAAEAAAAQAAMAAAABAAAAAAAPAAMAAAAAAAAAAAAOAAMAAAAAAAEAAAANAAMAAAABAAAAAAAMAAMAAAAAAAEAAAALAAMAAAAAAAEAAAAKAAMAAAAAAAEAAAAJAAMAAAABAAAAAAAIAAMAAAAAAAEAAAAHAAMAAAABAAEAAAAGAAMAAAABAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAABAAEAAAAGAAQAAAAAAAEAAAAHAAQAAAAAAAEAAAAIAAQAAAABAAAAAAAJAAQAAAAAAAAAAAAKAAQAAAAAAAAAAAALAAQAAAAAAAEAAAAMAAQAAAAAAAEAAAANAAQAAAAAAAAAAAAOAAQAAAAAAAAAAAAPAAQAAAABAAAAAAAQAAQAAAABAAAAAAAQAAUAAAABAAEAAAAPAAUAAAAAAAEAAAAOAAUAAAABAAEAAAANAAUAAAAAAAEAAAAMAAUAAAABAAAAAAALAAUAAAAAAAAAAAAKAAUAAAAAAAAAAAAJAAUAAAAAAAEAAAAIAAUAAAABAAEAAAAHAAUAAAABAAAAAAAGAAUAAAABAAAAAAAFAAUAAAABAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAADAAYAAAABAAAAAAACAAYAAAABAAEAAAABAAYAAAABAAEAAAAFAAYAAAAAAAAAAAAGAAYAAAAAAAEAAAAHAAYAAAAAAAAAAAAIAAYAAAAAAAEAAAAJAAYAAAAAAAAAAAAKAAYAAAAAAAEAAAALAAYAAAABAAAAAAAMAAYAAAABAAAAAAANAAYAAAABAAEAAAAOAAYAAAAAAAEAAAAPAAYAAAABAAAAAAAQAAYAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_qihlm")
+
+[node name="Walls" type="TileMapLayer" parent="TileMaps"]
+position = Vector2(1, -1)
+tile_map_data = PackedByteArray("AAABAAMAAAAAAAIAAAABAAQAAAAAAAIAAAABAAUAAAAAAAIAAAABAAYAAAAAAAIAAAABAAgAAAAAAAQAAAACAAgAAAABAAQAAAADAAgAAAABAAQAAAAEAAgAAAABAAQAAAAFAAgAAAABAAQAAAAGAAgAAAABAAQAAAAHAAgAAAABAAQAAAAIAAgAAAABAAQAAAAJAAgAAAACAAQAAAALAAgAAAABAAQAAAAMAAgAAAABAAQAAAANAAgAAAABAAQAAAAOAAgAAAABAAQAAAAPAAgAAAABAAQAAAABAAEAAAAAAAAAAAACAAEAAAABAAAAAAADAAEAAAABAAAAAAAGAAEAAAABAAAAAAAHAAEAAAABAAAAAAAIAAEAAAABAAAAAAAJAAEAAAABAAAAAAAKAAEAAAABAAAAAAALAAEAAAABAAAAAAAOAAEAAAABAAAAAAAPAAEAAAABAAAAAAAQAAEAAAAFAAAAAAAQAAMAAAAFAAIAAAAQAAQAAAAFAAIAAAAQAAUAAAAFAAIAAAAQAAYAAAAFAAIAAAAQAAgAAAAFAAQAAAABAAIAAAAAAAIAAAAQAAIAAAAFAAIAAAAMAAEAAAAEAAgAAAAEAAEAAAAEAAgAAAA=")
+tile_set = SubResource("TileSet_20dta")
+
 [node name="Radio" parent="." instance=ExtResource("2_u6nip")]
-position = Vector2(-152, -52)
+position = Vector2(172, 254)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_p1b40")

@@ -1,12 +1,16 @@
-[gd_scene load_steps=15 format=4 uid="uid://jisgdhf1or07"]
+[gd_scene load_steps=19 format=4 uid="uid://jisgdhf1or07"]
 
 [ext_resource type="Script" uid="uid://dmgxl3r4odaau" path="res://scripts/levels/cabin.gd" id="1_dg60t"]
 [ext_resource type="Texture2D" uid="uid://be124pllwo4ea" path="res://assets/sprites/cabin/wood-wall.png" id="2_gs66j"]
 [ext_resource type="AudioStream" uid="uid://dd542u84r4jqo" path="res://assets/audio/music/WINTER1.wav" id="2_p1b40"]
-[ext_resource type="PackedScene" uid="uid://j8310dctoxdc" path="res://scenes/objects/radio.tscn" id="2_u6nip"]
+[ext_resource type="PackedScene" uid="uid://j8310dctoxdc" path="res://scenes/levels/cabin/radio.tscn" id="2_u6nip"]
 [ext_resource type="Texture2D" uid="uid://db8f7ng3nmcix" path="res://assets/sprites/cabin/wood-floor.png" id="2_uaq2r"]
 [ext_resource type="AudioStream" uid="uid://laqdd2i80osj" path="res://assets/audio/effects/cabin/blizzard.wav" id="4_2cbld"]
-[ext_resource type="PackedScene" uid="uid://bvemusqauijyq" path="res://scenes/ui/screen_fade_effect.tscn" id="5_20dta"]
+[ext_resource type="PackedScene" uid="uid://da3acn1r4352s" path="res://scenes/levels/cabin/bed.tscn" id="5_jfp26"]
+[ext_resource type="PackedScene" uid="uid://c4j5jb5m48ivm" path="res://scenes/levels/cabin/table.tscn" id="6_30l2w"]
+[ext_resource type="PackedScene" uid="uid://cuvh0yu6pypn4" path="res://scenes/levels/cabin/shelf.tscn" id="7_de08v"]
+[ext_resource type="PackedScene" uid="uid://cfwvgomamfwi3" path="res://scenes/levels/cabin/fireplace.tscn" id="8_ynjo4"]
+[ext_resource type="PackedScene" uid="uid://cik8q811eci50" path="res://scenes/door.tscn" id="9_f7i51"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j712y"]
 texture = ExtResource("2_uaq2r")
@@ -41,12 +45,10 @@ texture_region_size = Vector2i(64, 64)
 0:4/size_in_atlas = Vector2i(1, 2)
 0:4/0 = 0
 0:4/0/texture_origin = Vector2i(0, 32)
-0:4/0/z_index = 1
 0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -96, 0, -96, 0, 0, 32, 0, 32, 32, -32, 32)
 2:4/size_in_atlas = Vector2i(2, 2)
 2:4/0 = 0
 2:4/0/texture_origin = Vector2i(-32, 32)
-2:4/0/z_index = 1
 2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 0, 96, 0, 96, 32, -32, 32)
 2:6/size_in_atlas = Vector2i(1, 2)
 2:6/0 = 0
@@ -67,12 +69,10 @@ texture_region_size = Vector2i(64, 64)
 1:4/size_in_atlas = Vector2i(1, 2)
 1:4/0 = 0
 1:4/0/texture_origin = Vector2i(0, 32)
-1:4/0/z_index = 1
 1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 0, 32, 0, 32, 32, -32, 32)
 5:4/size_in_atlas = Vector2i(1, 2)
 5:4/0 = 0
 5:4/0/texture_origin = Vector2i(0, 32)
-5:4/0/z_index = 1
 5:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -96, 32, -96, 32, 32, -32, 32, -32, 0, 0, 0)
 
 [sub_resource type="TileSet" id="TileSet_20dta"]
@@ -142,44 +142,71 @@ _data = {
 &"fade_in": SubResource("Animation_p1b40")
 }
 
-[node name="Cabin" type="Node2D" node_paths=PackedStringArray("background_music_ap", "screen_fade_effect")]
+[node name="Cabin" type="Node2D" node_paths=PackedStringArray("background_music_ap")]
+y_sort_enabled = true
 script = ExtResource("1_dg60t")
-background_music_ap = NodePath("BackgroundMusic/AnimationPlayer")
-screen_fade_effect = NodePath("ScreenFadeEffect")
+background_music_ap = NodePath("Audio/BackgroundMusic/AnimationPlayer")
 
 [node name="TileMaps" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Floor" type="TileMapLayer" parent="TileMaps"]
+z_index = -1
 tile_map_data = PackedByteArray("AAACAAIAAAABAAAAAAADAAIAAAABAAEAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAEAAAAEAAQAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAEAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAACAAUAAAAAAAAAAAABAAUAAAAAAAEAAAABAAQAAAABAAAAAAABAAMAAAABAAEAAAABAAIAAAAAAAEAAAAEAAIAAAABAAAAAAAFAAIAAAABAAEAAAAGAAIAAAABAAEAAAAHAAIAAAAAAAEAAAAIAAIAAAABAAEAAAAJAAIAAAAAAAEAAAAKAAIAAAAAAAAAAAALAAIAAAAAAAAAAAAMAAIAAAAAAAEAAAANAAIAAAAAAAEAAAAOAAIAAAAAAAEAAAAPAAIAAAAAAAAAAAAQAAIAAAABAAEAAAAQAAMAAAABAAAAAAAPAAMAAAAAAAAAAAAOAAMAAAAAAAEAAAANAAMAAAABAAAAAAAMAAMAAAAAAAEAAAALAAMAAAAAAAEAAAAKAAMAAAAAAAEAAAAJAAMAAAABAAAAAAAIAAMAAAAAAAEAAAAHAAMAAAABAAEAAAAGAAMAAAABAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAABAAEAAAAGAAQAAAAAAAEAAAAHAAQAAAAAAAEAAAAIAAQAAAABAAAAAAAJAAQAAAAAAAAAAAAKAAQAAAAAAAAAAAALAAQAAAAAAAEAAAAMAAQAAAAAAAEAAAANAAQAAAAAAAAAAAAOAAQAAAAAAAAAAAAPAAQAAAABAAAAAAAQAAQAAAABAAAAAAAQAAUAAAABAAEAAAAPAAUAAAAAAAEAAAAOAAUAAAABAAEAAAANAAUAAAAAAAEAAAAMAAUAAAABAAAAAAALAAUAAAAAAAAAAAAKAAUAAAAAAAAAAAAJAAUAAAAAAAEAAAAIAAUAAAABAAEAAAAHAAUAAAABAAAAAAAGAAUAAAABAAAAAAAFAAUAAAABAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAADAAYAAAABAAAAAAACAAYAAAABAAEAAAABAAYAAAABAAEAAAAFAAYAAAAAAAAAAAAGAAYAAAAAAAEAAAAHAAYAAAAAAAAAAAAIAAYAAAAAAAEAAAAJAAYAAAAAAAAAAAAKAAYAAAAAAAEAAAALAAYAAAABAAAAAAAMAAYAAAABAAAAAAANAAYAAAABAAEAAAAOAAYAAAAAAAEAAAAPAAYAAAABAAAAAAAQAAYAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_qihlm")
 
 [node name="Walls" type="TileMapLayer" parent="TileMaps"]
+y_sort_enabled = true
 position = Vector2(1, -1)
 tile_map_data = PackedByteArray("AAABAAMAAAAAAAIAAAABAAQAAAAAAAIAAAABAAUAAAAAAAIAAAABAAYAAAAAAAIAAAABAAgAAAAAAAQAAAACAAgAAAABAAQAAAADAAgAAAABAAQAAAAEAAgAAAABAAQAAAAFAAgAAAABAAQAAAAGAAgAAAABAAQAAAAHAAgAAAABAAQAAAAIAAgAAAABAAQAAAAJAAgAAAACAAQAAAALAAgAAAABAAQAAAAMAAgAAAABAAQAAAANAAgAAAABAAQAAAAOAAgAAAABAAQAAAAPAAgAAAABAAQAAAABAAEAAAAAAAAAAAACAAEAAAABAAAAAAADAAEAAAABAAAAAAAGAAEAAAABAAAAAAAHAAEAAAABAAAAAAAIAAEAAAABAAAAAAAJAAEAAAABAAAAAAAKAAEAAAABAAAAAAALAAEAAAABAAAAAAAOAAEAAAABAAAAAAAPAAEAAAABAAAAAAAQAAEAAAAFAAAAAAAQAAMAAAAFAAIAAAAQAAQAAAAFAAIAAAAQAAUAAAAFAAIAAAAQAAYAAAAFAAIAAAAQAAgAAAAFAAQAAAABAAIAAAAAAAIAAAAQAAIAAAAFAAIAAAAMAAEAAAAEAAgAAAAEAAEAAAAEAAgAAAA=")
 tile_set = SubResource("TileSet_20dta")
 
-[node name="Radio" parent="." instance=ExtResource("2_u6nip")]
-position = Vector2(172, 254)
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
 
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+[node name="Radio" parent="Objects" instance=ExtResource("2_u6nip")]
+position = Vector2(418, 279)
+
+[node name="Bed" parent="Objects" instance=ExtResource("5_jfp26")]
+position = Vector2(970, 144)
+
+[node name="Table" parent="Objects" instance=ExtResource("6_30l2w")]
+position = Vector2(825, 184)
+
+[node name="Shelf" parent="Objects" instance=ExtResource("7_de08v")]
+position = Vector2(437, 97)
+
+[node name="Fireplace" parent="Objects" instance=ExtResource("8_ynjo4")]
+z_index = 1
+position = Vector2(641, 79)
+
+[node name="Door" parent="." node_paths=PackedStringArray("destination") instance=ExtResource("9_f7i51")]
+position = Vector2(644, 575)
+destination = NodePath("Exit")
+
+[node name="Exit" type="Node2D" parent="Door"]
+position = Vector2(0, 50)
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("2_p1b40")
 bus = &"Music"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BackgroundMusic"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Audio/BackgroundMusic"]
 libraries = {
 &"": SubResource("AnimationLibrary_2cbld")
 }
 
-[node name="StartDelay" type="Timer" parent="BackgroundMusic"]
+[node name="StartDelay" type="Timer" parent="Audio/BackgroundMusic"]
 wait_time = 5.0
 one_shot = true
 autostart = true
 
-[node name="Ambience" type="AudioStreamPlayer" parent="."]
+[node name="Ambience" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("4_2cbld")
 autoplay = true
 bus = &"Background"
 
-[node name="ScreenFadeEffect" parent="." instance=ExtResource("5_20dta")]
-
-[connection signal="timeout" from="BackgroundMusic/StartDelay" to="." method="_on_start_delay_timeout"]
+[connection signal="passed_through" from="Door" to="." method="_on_door_passed_through"]
+[connection signal="timeout" from="Audio/BackgroundMusic/StartDelay" to="." method="_on_start_delay_timeout"]

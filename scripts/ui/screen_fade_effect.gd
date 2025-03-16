@@ -1,14 +1,22 @@
+class_name ScreenFadeEffect
 extends CanvasLayer
 
-const MIN_VOLUME := -20.0
+const MIN_VOLUME := -50.0
 
 const FADE_IN_ANIM := &"fade_in"
 const FADE_OUT_ANIM := &"fade_out"
+
+static var instance: ScreenFadeEffect
 
 @export var animation_player: AnimationPlayer
 @export var timer: Timer
 
 var timer_running := false
+
+
+func _ready() -> void:
+	instance = self
+	fade_in()
 
 
 func _process(_delta: float) -> void:

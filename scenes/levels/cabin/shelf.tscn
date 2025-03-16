@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuvh0yu6pypn4"]
+
+[ext_resource type="Texture2D" uid="uid://bvv3wuhgccwgp" path="res://assets/sprites/cabin/home-furniture.png" id="1_n1a74"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7hajg"]
+size = Vector2(96, 37)
+
+[node name="Shelf" type="StaticBody2D"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 49.5)
+shape = SubResource("RectangleShape2D_7hajg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_n1a74")
+region_enabled = true
+region_rect = Rect2(144, 24, 96, 136)

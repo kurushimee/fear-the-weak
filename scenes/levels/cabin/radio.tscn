@@ -1,29 +1,31 @@
 [gd_scene load_steps=6 format=3 uid="uid://j8310dctoxdc"]
 
 [ext_resource type="Script" uid="uid://bjvlqyxvq1hpf" path="res://scripts/gameplay/objects/radio.gd" id="1_radio"]
-[ext_resource type="Texture2D" uid="uid://deg7hoorwgpw8" path="res://icon.svg" id="2_hrs8c"]
+[ext_resource type="Texture2D" uid="uid://bvv3wuhgccwgp" path="res://assets/sprites/cabin/home-furniture.png" id="2_hrs8c"]
 [ext_resource type="Script" uid="uid://dy178k3wrfhwp" path="res://scripts/gameplay/interactable.gd" id="2_interactable"]
 [ext_resource type="PackedScene" path="res://scenes/ui/radio_minigame_ui.tscn" id="3_minigame"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_radio1"]
-size = Vector2(32, 32)
+size = Vector2(92, 63)
 
 [node name="Radio" type="StaticBody2D"]
-collision_layer = 4
-collision_mask = 0
+y_sort_enabled = true
+collision_layer = 5
+collision_mask = 2
 script = ExtResource("1_radio")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_radio1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.513726, 0.0823529, 1)
-scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_hrs8c")
+region_enabled = true
+region_rect = Rect2(404, 270, 92, 108)
 
 [node name="Interactable" type="Node" parent="."]
 script = ExtResource("2_interactable")
-interaction_prompt = "tune radio"
+interaction_prompt = "настроить радио"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -1,9 +1,11 @@
 class_name Player
 extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 350.0
 
 static var instance: Player
+
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var is_input_enabled: bool = true
 var current_interactable: Interactable = null
@@ -19,18 +21,18 @@ func _ready() -> void:
 
 ## Handles player movement.
 func _physics_process(_delta: float) -> void:
-	if not is_input_enabled:
-		velocity = Vector2.ZERO
-		move_and_slide()
-		return
-
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down").normalized()
-	if direction:
+	if direction and is_input_enabled:
 		velocity = direction * SPEED
+		sprite.play(&"walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.y = move_toward(velocity.y, 0, SPEED)
+		sprite.play(&"idle")
+
+	if not is_zero_approx(velocity.x):
+		sprite.flip_h = velocity.x < 0
 
 	move_and_slide()
 
@@ -51,7 +53,7 @@ func update_interaction() -> void:
 		interaction_prompt.text = current_interactable.interaction_prompt
 		interaction_prompt.visible = current_interactable.is_active
 	else:
-		interaction_prompt.visible = false
+		interaction_prompt.hide()
 
 
 ## Returns the nearest `Interactable` in the interaction area.
@@ -81,8 +83,7 @@ func get_nearest_interactable() -> Interactable:
 func set_input_enabled(enabled: bool) -> void:
 	is_input_enabled = enabled
 	if not enabled:
-		velocity = Vector2.ZERO
-		interaction_prompt.visible = false
+		interaction_prompt.hide()
 	else:
 		update_interaction()
 

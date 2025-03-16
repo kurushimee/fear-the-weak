@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cik8q811eci50"]
+
+[ext_resource type="Script" uid="uid://dn0f8oey2ith7" path="res://scripts/gameplay/objects/door.gd" id="1_83dcw"]
+[ext_resource type="Script" uid="uid://dy178k3wrfhwp" path="res://scripts/gameplay/interactable.gd" id="2_la1wf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7vq4"]
+size = Vector2(74, 64)
+
+[node name="Door" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_83dcw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -8)
+shape = SubResource("RectangleShape2D_x7vq4")
+
+[node name="Interactable" type="Node" parent="."]
+script = ExtResource("2_la1wf")
+interaction_prompt = "пройти в дверь"
+metadata/_custom_type_script = "uid://dy178k3wrfhwp"
+
+[connection signal="interacted" from="Interactable" to="." method="_on_interacted"]

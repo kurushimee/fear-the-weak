@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1cjntd1g62jt"]
+
+[ext_resource type="Script" uid="uid://bwl6dt111jmun" path="res://scripts/audio/temp_sfx.gd" id="1_xy527"]
+
+[node name="TempSFX" type="AudioStreamPlayer2D"]
+autoplay = true
+max_distance = 576.0
+bus = &"SFX"
+script = ExtResource("1_xy527")
+
+[connection signal="finished" from="." to="." method="queue_free"]

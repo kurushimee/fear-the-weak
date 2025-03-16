@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://radio_minigame"]
+[gd_scene load_steps=5 format=3 uid="uid://bkvvv1uqelhco"]
 
-[ext_resource type="Script" path="res://scripts/gameplay/ui/radio_minigame_ui.gd" id="1_minigame"]
+[ext_resource type="Script" uid="uid://dvprpj136cy2c" path="res://scripts/gameplay/ui/radio_minigame_ui.gd" id="1_minigame"]
+[ext_resource type="AudioStream" uid="uid://dxqwhh873kvx7" path="res://assets/audio/effects/cabin/radio static.wav" id="2_aqwci"]
+[ext_resource type="AudioStream" uid="uid://cjvdmdgfa7wt4" path="res://assets/audio/effects/cabin/radio noise.wav" id="3_221de"]
+[ext_resource type="AudioStream" uid="uid://ndfs11sp4oyg" path="res://assets/audio/effects/cabin/radio tune.wav" id="4_o3b2v"]
 
 [node name="RadioMinigameUI" type="Control"]
 layout_mode = 3
@@ -27,4 +30,14 @@ grow_vertical = 2
 text = "100.0 MHz"
 horizontal_alignment = 1
 
-[node name="FeedbackPlayer" type="AudioStreamPlayer" parent="."]
+[node name="StaticSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_aqwci")
+bus = &"SFX"
+
+[node name="NearFreqSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_221de")
+bus = &"SFX"
+
+[node name="OnFreqSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_o3b2v")
+bus = &"SFX"

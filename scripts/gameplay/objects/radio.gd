@@ -11,4 +11,5 @@ func _on_interacted() -> void:
 
 
 func _on_minigame_completed() -> void:
+	interactable.is_active = false
 	Player.instance.set_input_enabled(true)

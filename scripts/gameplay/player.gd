@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 const SPEED = 350.0
+const CREAK_CHANCE: float = 0.05
 
 static var instance: Player
 
@@ -9,9 +10,15 @@ static var instance: Player
 
 var is_input_enabled: bool = true
 var current_interactable: Interactable = null
+var footstep_time: float = 0.0
+var footstep_interval: float = 0.5
 
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var interaction_prompt: Label = $InteractionPrompt
+@onready var footsteps_asp: AudioStreamPlayer = $Footsteps
+
+@export var temp_sfx: PackedScene
+@export var wood_creak: AudioStream
 
 
 func _ready() -> void:
@@ -20,16 +27,29 @@ func _ready() -> void:
 
 
 ## Handles player movement.
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down").normalized()
 	if direction and is_input_enabled:
 		velocity = direction * SPEED
 		sprite.play(&"walk")
+
+		# Play footstep sounds when walking
+		footstep_time += delta
+		if footstep_time >= footstep_interval:
+			footsteps_asp.play()
+			# Random chance to play wood creak sound
+			if randf() < CREAK_CHANCE:
+				var sfx := temp_sfx.instantiate()
+				add_child(sfx)
+				sfx.play_at_pos(global_position, wood_creak)
+			footstep_time = 0.0
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 		sprite.play(&"idle")
+		# Reset footstep timer when not moving
+		footstep_time = 0.0
 
 	if not is_zero_approx(velocity.x):
 		sprite.flip_h = velocity.x < 0

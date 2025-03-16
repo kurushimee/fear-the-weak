@@ -10,15 +10,26 @@ const CURSOR_SPEED: float = 10.0
 const CURSOR_ACCELERATION: float = 50.0
 const LINE_WIDTH: float = 400.0
 const TARGET_PROXIMITY_THRESHOLD: float = 0.1 # How long the cursor has to stay on target
+const MAX_DISTANCE: float = 2.0 # Maximum distance to show any proximity effect
 
 var target_frequency: float
 var current_frequency: float
 var time_on_frequency: float
 var is_active: bool = false
 var current_cursor_velocity: float = 0.0 # Current velocity of the cursor
+var current_audio_state: AudioState = AudioState.NONE
 
 @onready var frequency_label: Label = $FrequencyLabel
-@onready var feedback_player: AudioStreamPlayer = $FeedbackPlayer
+@onready var static_sfx: AudioStreamPlayer = $StaticSFX
+@onready var near_freq_sfx: AudioStreamPlayer = $NearFreqSFX
+@onready var on_freq_sfx: AudioStreamPlayer = $OnFreqSFX
+
+enum AudioState {
+	NONE,
+	STATIC,
+	NEAR_FREQ,
+	ON_FREQ
+}
 
 func _ready() -> void:
 	hide()
@@ -50,11 +61,14 @@ func _process(delta: float) -> void:
 	if abs(current_frequency - target_frequency) < TARGET_PROXIMITY_THRESHOLD:
 		time_on_frequency += delta
 		if time_on_frequency >= REQUIRED_TIME_ON_FREQUENCY:
+			# Stop audio before completing minigame to prevent audio from playing after completion
+			stop_all_audio()
 			complete_minigame()
 	else:
 		time_on_frequency = 0.0
 
 	frequency_label.text = "%.1f MHz" % current_frequency
+	update_audio_feedback()
 
 
 func _draw() -> void:
@@ -118,7 +132,7 @@ func _draw() -> void:
 
 func calculate_proximity() -> float:
 	var _distance: float = abs(current_frequency - target_frequency)
-	var max_distance: float = 2.0 # Maximum distance to show any proximity effect
+	var max_distance: float = MAX_DISTANCE # Maximum distance to show any proximity effect
 
 	if _distance > max_distance:
 		return 0.0
@@ -137,7 +151,10 @@ func start_minigame() -> void:
 	is_active = true
 	show()
 	queue_redraw()
-	update_feedback()
+
+	# Start static sound when entering minigame
+	static_sfx.play()
+	current_audio_state = AudioState.STATIC
 
 
 func complete_minigame() -> void:
@@ -146,8 +163,37 @@ func complete_minigame() -> void:
 	minigame_completed.emit()
 
 
-func update_feedback() -> void:
-	# Use the distance to target frequency for audio feedback
-	var _distance: float = abs(current_frequency - target_frequency)
-	# TODO: Implement audio feedback based on distance to target frequency
-	# Lower static/noise as player gets closer to target frequency
+func update_audio_feedback() -> void:
+	var proximity := calculate_proximity()
+	var new_state: AudioState
+
+	if proximity >= 0.8: # Matches the green circle threshold in _draw
+		new_state = AudioState.ON_FREQ
+	elif proximity > 0.0: # Any proximity effect shows the red circle
+		new_state = AudioState.NEAR_FREQ
+	else:
+		new_state = AudioState.STATIC
+
+	if new_state != current_audio_state:
+		match new_state:
+			AudioState.ON_FREQ:
+				static_sfx.stop()
+				near_freq_sfx.stop()
+				on_freq_sfx.play()
+			AudioState.NEAR_FREQ:
+				static_sfx.stop()
+				near_freq_sfx.play()
+				on_freq_sfx.stop()
+			AudioState.STATIC:
+				static_sfx.play()
+				near_freq_sfx.stop()
+				on_freq_sfx.stop()
+
+		current_audio_state = new_state
+
+
+func stop_all_audio() -> void:
+	static_sfx.stop()
+	near_freq_sfx.stop()
+	on_freq_sfx.stop()
+	current_audio_state = AudioState.NONE

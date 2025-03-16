@@ -1,8 +1,19 @@
-[gd_scene load_steps=25 format=3 uid="uid://3q8i2pl8dgtp"]
+[gd_scene load_steps=31 format=3 uid="uid://3q8i2pl8dgtp"]
 
 [ext_resource type="Script" uid="uid://bwd050i1s3xq2" path="res://scripts/gameplay/player.gd" id="1_g2els"]
+[ext_resource type="PackedScene" uid="uid://c1cjntd1g62jt" path="res://scenes/audio/temp_sfx.tscn" id="2_fjrip"]
 [ext_resource type="Texture2D" uid="uid://btlhj73hmapnj" path="res://assets/sprites/character/man-idle.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://dol64iwyldbvp" path="res://assets/sprites/character/man-walk-Sheet.png" id="3_dqkch"]
+[ext_resource type="AudioStream" uid="uid://dynv72a4daxht" path="res://assets/audio/effects/cabin/footsteps/steps wood/steps wood_1.wav" id="4_2bnmj"]
+[ext_resource type="AudioStream" uid="uid://bs2m387wecoj0" path="res://assets/audio/effects/cabin/footsteps/steps wood/steps wood_2.wav" id="6_2bnmj"]
+[ext_resource type="AudioStream" uid="uid://13feuqsp20dn" path="res://assets/audio/effects/cabin/wood creakin.wav" id="6_tuyoq"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_smehm"]
+playback_mode = 1
+random_pitch = 2.0
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("6_tuyoq")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u8vuu"]
 size = Vector2(42, 50)
@@ -150,10 +161,19 @@ font_size = 24
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tuyoq"]
+playback_mode = 1
+random_volume_offset_db = 1.0
+streams_count = 2
+stream_0/stream = ExtResource("4_2bnmj")
+stream_1/stream = ExtResource("6_2bnmj")
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 2
 script = ExtResource("1_g2els")
+temp_sfx = ExtResource("2_fjrip")
+wood_creak = SubResource("AudioStreamRandomizer_smehm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
@@ -192,12 +212,20 @@ limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_left_margin = 0.35
+drag_left_margin = 0.3
 drag_top_margin = 0.3
-drag_right_margin = 0.35
+drag_right_margin = 0.3
 drag_bottom_margin = 0.3
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Camera2D"]
+current = true
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_tuyoq")
+max_polyphony = 2
+bus = &"SFX"
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_body_exited"]

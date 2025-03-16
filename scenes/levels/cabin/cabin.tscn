@@ -142,10 +142,12 @@ _data = {
 &"fade_in": SubResource("Animation_p1b40")
 }
 
-[node name="Cabin" type="Node2D" node_paths=PackedStringArray("background_music_ap")]
+[node name="Cabin" type="Node2D" node_paths=PackedStringArray("background_music_ap", "background_music", "ambience")]
 y_sort_enabled = true
 script = ExtResource("1_dg60t")
 background_music_ap = NodePath("Audio/BackgroundMusic/AnimationPlayer")
+background_music = NodePath("Audio/BackgroundMusic")
+ambience = NodePath("Audio/Ambience")
 
 [node name="TileMaps" type="Node2D" parent="."]
 y_sort_enabled = true

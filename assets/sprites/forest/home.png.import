@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbrp6bx400uxo"
-path="res://.godot/imported/grave.png-eee47a3a45d07bdccab8acf2d5127979.ctex"
+uid="uid://oyp5wsj5iaql"
+path="res://.godot/imported/home.png-5bb59b10d689188dad1dba57b6f83baf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/forest/grave.png"
-dest_files=["res://.godot/imported/grave.png-eee47a3a45d07bdccab8acf2d5127979.ctex"]
+source_file="res://assets/sprites/forest/home.png"
+dest_files=["res://.godot/imported/home.png-5bb59b10d689188dad1dba57b6f83baf.ctex"]
 
 [params]
 

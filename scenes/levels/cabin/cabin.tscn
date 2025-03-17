@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dmgxl3r4odaau" path="res://scripts/levels/cabin.gd" id="1_dg60t"]
 [ext_resource type="Texture2D" uid="uid://be124pllwo4ea" path="res://assets/sprites/cabin/wood-wall.png" id="2_gs66j"]
-[ext_resource type="AudioStream" uid="uid://dd542u84r4jqo" path="res://assets/audio/music/WINTER1.wav" id="2_p1b40"]
+[ext_resource type="AudioStream" uid="uid://dd542u84r4jqo" path="res://assets/audio/music/environment/WINTER1.wav" id="2_p1b40"]
 [ext_resource type="PackedScene" uid="uid://j8310dctoxdc" path="res://scenes/levels/cabin/radio.tscn" id="2_u6nip"]
 [ext_resource type="Texture2D" uid="uid://db8f7ng3nmcix" path="res://assets/sprites/cabin/wood-floor.png" id="2_uaq2r"]
 [ext_resource type="AudioStream" uid="uid://laqdd2i80osj" path="res://assets/audio/effects/cabin/blizzard.wav" id="4_2cbld"]

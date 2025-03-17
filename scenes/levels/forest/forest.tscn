@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ko1i3x6rna1r" path="res://assets/sprites/forest/elka.png" id="3_tp8ux"]
 [ext_resource type="Texture2D" uid="uid://oyp5wsj5iaql" path="res://assets/sprites/forest/home.png" id="3_vfq7t"]
 [ext_resource type="PackedScene" uid="uid://cik8q811eci50" path="res://scenes/door.tscn" id="4_2qhru"]
-[ext_resource type="AudioStream" uid="uid://euf8h4wy7vf3" path="res://assets/audio/music/WINTER02.wav" id="4_tp8ux"]
+[ext_resource type="AudioStream" uid="uid://euf8h4wy7vf3" path="res://assets/audio/music/environment/WINTER02.wav" id="4_tp8ux"]
 [ext_resource type="AudioStream" uid="uid://c4g5jehwgwm45" path="res://assets/audio/effects/forest/blizzard.wav" id="5_afj37"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tipki"]

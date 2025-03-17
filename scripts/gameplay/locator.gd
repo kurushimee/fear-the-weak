@@ -1,7 +1,6 @@
 class_name Locator
 extends Node2D
 
-
 @export var destinations: Array[Node2D] = []
 
 @export var min_beep_delay: float = 0.2
@@ -18,6 +17,48 @@ var current_destination_index: int = -1
 var is_active: bool = false
 var beep_timer: float = 0.0
 var current_beep_delay: float = max_beep_delay
+# Start assuming player is in cabin - this will be properly set by signals
+var is_in_cabin: bool = true
+
+
+func _process(delta: float) -> void:
+	if is_in_cabin or not is_active or current_destination_index == -1:
+		return
+
+	var current_destination := get_current_destination()
+	if not current_destination:
+		return
+
+	# Calculate distance to destination
+	var distance := Player.instance.global_position.distance_to(current_destination.global_position)
+
+	# Check if destination reached
+	if distance <= destination_reached_distance:
+		# Play destination reached sound
+		if destination_reached_player and destination_reached_player.stream:
+			destination_reached_player.play()
+		else:
+			push_warning("Locator: DestinationReachedPlayer or its stream is null")
+
+		is_active = false
+		return
+
+	# Calculate beep delay based on distance
+	var distance_ratio := clampf((distance - destination_reached_distance) /
+							(max_distance - destination_reached_distance), 0.0, 1.0)
+	current_beep_delay = lerpf(min_beep_delay, max_beep_delay, distance_ratio)
+
+	# Update beep timer
+	beep_timer += delta
+	if beep_timer >= current_beep_delay:
+		# Play beep sound
+		if beep_player and beep_player.stream:
+			beep_player.play()
+		else:
+			push_warning("Locator: BeepPlayer or its stream is null")
+
+		# Reset timer
+		beep_timer = 0.0
 
 
 ## Activates the locator with the first destination
@@ -34,54 +75,27 @@ func activate() -> void:
 		current_destination_index = (current_destination_index + 1) % destinations.size()
 
 	# Play activation sound
-	next_destination_player.play()
+	if next_destination_player and next_destination_player.stream:
+		next_destination_player.play()
+	else:
+		push_warning("Locator: NextDestinationPlayer or its stream is null")
 
 	is_active = true
 	beep_timer = 0.0
 
 
-## Deactivates the locator
-func deactivate() -> void:
-	is_active = false
-
-
-## Returns the current destination Node2D
+## Returns the current destination Node2D if any, otherwise `null`
 func get_current_destination() -> Node2D:
 	if current_destination_index >= 0 and current_destination_index < destinations.size():
 		return destinations[current_destination_index]
 	return null
 
 
-func _process(delta: float) -> void:
-	if not is_active or current_destination_index == -1:
-		return
+## Called when player exits the cabin
+func _on_player_exited_cabin() -> void:
+	is_in_cabin = false
 
-	var current_destination := get_current_destination()
-	if not current_destination:
-		return
 
-	# Calculate distance to destination
-	var distance := Player.instance.global_position.distance_to(current_destination.global_position)
-
-	# Check if destination reached
-	if distance <= destination_reached_distance:
-		# Play destination reached sound
-		destination_reached_player.play()
-
-		# Deactivate locator
-		deactivate()
-		return
-
-	# Calculate beep delay based on distance
-	var distance_ratio := clampf((distance - destination_reached_distance) /
-							(max_distance - destination_reached_distance), 0.0, 1.0)
-	current_beep_delay = lerpf(min_beep_delay, max_beep_delay, distance_ratio)
-
-	# Update beep timer
-	beep_timer += delta
-	if beep_timer >= current_beep_delay:
-		# Play beep sound
-		beep_player.play()
-
-		# Reset timer
-		beep_timer = 0.0
+## Called when player enters the cabin
+func _on_player_entered_cabin() -> void:
+	is_in_cabin = true

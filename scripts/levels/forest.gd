@@ -14,4 +14,3 @@ func reset_audio() -> void:
 
 func _on_cabin_door_passed_through() -> void:
 	entered_cabin.emit()
-	locator.deactivate()

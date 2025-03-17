@@ -15,7 +15,4 @@ func _on_interacted() -> void:
 func _on_minigame_completed() -> void:
 	interactable.is_active = false
 	Player.instance.set_input_enabled(true)
-
-	# Activate the locator through the cabin
-	if cabin and cabin.has_method(&"activate_locator"):
-		cabin.activate_locator()
+	cabin.activate_locator()

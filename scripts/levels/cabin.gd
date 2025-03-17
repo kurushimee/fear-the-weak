@@ -26,6 +26,4 @@ func _on_door_passed_through() -> void:
 
 ## Called when the radio minigame is completed
 func activate_locator() -> void:
-	if locator:
-		# Activate the next destination in the locator
-		locator.activate()
+	locator.activate()

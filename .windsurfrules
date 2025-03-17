@@ -1,6 +1,6 @@
 ## Project Context
-An isometric 2D adventure game with a narrative focus
-- Made in Godot 4.4
+- 2D game
+- Uses Godot 4.4
 - Uses only GDScript as the scripting language
 
 ## Code Style and Structure

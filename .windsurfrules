@@ -1,30 +1,19 @@
-## Project Context
-- 2D game
-- Uses Godot 4.4
-- Uses only GDScript as the scripting language
-
-## Code Style and Structure
-- Write concise, technical GDScript code with accurate type hinting
-    - Always specify function return type (except lambda functions)
+# General Coding Guidelines
+- Godot version is 4.4
+- Use GDScript for all development
+- Prioritize readability and maintainability in all code
+- Ensure function and variable names are clear and descriptive
 - Use *String Name* and *Node Path* literals where applicable
-- Use composition
-- Separate responsibility between scripts
-- Prefer iteration and modularization over code duplication
-- Use descriptive variable names with auxiliary verbs (e.g., is_loading, has_error)
-- Follow official GDScript style guide conventions
+- Use type hints (`: Type`)
+- Follow official GDScript style guide
 
 ## Naming Conventions
 - Use snake_case for directories/files and variable/function names in scripts
-- Use CamelCase for class/node names
-- Prefix Godot functions (e.g., _process, _physics_process) and signal handlers (e.g., _on_body_entered) with an underscore
-    - No prefix for own functions (e.g. handle_something)
-- Use type hints
-
-## Error Handling
-- Implement proper error boundaries
-- Log errors appropriately for debugging
-- Provide user-friendly error messages
+- Use CamelCase for class names (e.g., `Player`, `Interactable`)
+- Use snake_case for function names (e.g., `activate`, `deactivate`)
+- Use snake_case for variable names (e.g., `is_active`, `has_error`)
+- Use SCREAMING_SNAKE_CASE for constants (e.g., `MAX_HEALTH`, `DEFAULT_SPEED`)
 
 ## Documentation
-- Document code architecture
-- Don't include comments unless it's for complex logic
+- Add documentation comments (`##`) to each function
+- Use concise, meaningful comments for complex logic

@@ -5,6 +5,7 @@
 - Ensure function and variable names are clear and descriptive
 - Use *String Name* and *Node Path* literals where applicable
 - Use type hints (`: Type`)
+- Prefer to connect signals in scenes rather than in scripts, unless required
 - Follow official GDScript style guide
 
 ## Naming Conventions

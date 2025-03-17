@@ -20,9 +20,14 @@ position = Vector2(954, 226)
 
 [node name="ScreenFadeEffect" parent="." instance=ExtResource("4_jyhfs")]
 
-[node name="Locator" type="Node2D" parent="."]
+[node name="Locator" type="Node2D" parent="." node_paths=PackedStringArray("destinations")]
 script = ExtResource("6_tefeu")
+destinations = [NodePath("TestDest")]
+max_distance = 10000.0
 metadata/_custom_type_script = "uid://cxis30lful01c"
+
+[node name="TestDest" type="Node2D" parent="Locator"]
+position = Vector2(2916, 157)
 
 [connection signal="exited_cabin" from="Cabin" to="." method="_on_exited_cabin"]
 [connection signal="entered_cabin" from="Forest" to="." method="_on_entered_cabin"]

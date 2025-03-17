@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cik8q811eci50"]
+[gd_scene load_steps=7 format=3 uid="uid://cik8q811eci50"]
 
 [ext_resource type="Script" uid="uid://dn0f8oey2ith7" path="res://scripts/gameplay/objects/door.gd" id="1_83dcw"]
+[ext_resource type="PackedScene" uid="uid://c1cjntd1g62jt" path="res://scenes/audio/temp_sfx.tscn" id="2_18pbm"]
 [ext_resource type="Script" uid="uid://dy178k3wrfhwp" path="res://scripts/gameplay/interactable.gd" id="2_la1wf"]
+[ext_resource type="AudioStream" uid="uid://c273ctag4i6qm" path="res://assets/audio/effects/cabin/open door.wav" id="3_la1wf"]
+[ext_resource type="AudioStream" uid="uid://d34h5sku6v2hp" path="res://assets/audio/effects/cabin/close door.wav" id="4_18pbm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7vq4"]
 size = Vector2(74, 64)
@@ -10,6 +13,7 @@ size = Vector2(74, 64)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_83dcw")
+temp_sfx = ExtResource("2_18pbm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -8)
@@ -19,5 +23,15 @@ shape = SubResource("RectangleShape2D_x7vq4")
 script = ExtResource("2_la1wf")
 interaction_prompt = "пройти в дверь"
 metadata/_custom_type_script = "uid://dy178k3wrfhwp"
+
+[node name="OpenSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_la1wf")
+max_distance = 1000.0
+bus = &"SFX"
+
+[node name="CloseSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_18pbm")
+max_distance = 1000.0
+bus = &"SFX"
 
 [connection signal="interacted" from="Interactable" to="." method="_on_interacted"]

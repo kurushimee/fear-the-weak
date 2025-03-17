@@ -15,6 +15,10 @@ run/main_scene="uid://c6frfb6s7uegs"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+AudioService="*res://scripts/services/audio_service.gd"
+
 [input]
 
 move_left={

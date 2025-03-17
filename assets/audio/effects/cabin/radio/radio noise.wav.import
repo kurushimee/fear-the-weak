@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cjvdmdgfa7wt4"
-path="res://.godot/imported/radio noise.wav-f47130aa1e7c387a4b911293ca50b9b5.sample"
+path="res://.godot/imported/radio noise.wav-6ec0c60c1131c8ee508e6d6909627dea.sample"
 
 [deps]
 
-source_file="res://assets/audio/effects/cabin/radio noise.wav"
-dest_files=["res://.godot/imported/radio noise.wav-f47130aa1e7c387a4b911293ca50b9b5.sample"]
+source_file="res://assets/audio/effects/cabin/radio/radio noise.wav"
+dest_files=["res://.godot/imported/radio noise.wav-6ec0c60c1131c8ee508e6d6909627dea.sample"]
 
 [params]
 

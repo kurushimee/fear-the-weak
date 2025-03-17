@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://gjdc6yys2e0d"
-path="res://.godot/imported/clock sound2.wav-104253bd29d21533a162697b3fc825d6.sample"
+path="res://.godot/imported/clock sound2.wav-5acd1f65e829a35a7f3dc72dfe8d8470.sample"
 
 [deps]
 
-source_file="res://assets/audio/effects/cabin/clock sound2.wav"
-dest_files=["res://.godot/imported/clock sound2.wav-104253bd29d21533a162697b3fc825d6.sample"]
+source_file="res://assets/audio/effects/cabin/clock/clock sound2.wav"
+dest_files=["res://.godot/imported/clock sound2.wav-5acd1f65e829a35a7f3dc72dfe8d8470.sample"]
 
 [params]
 

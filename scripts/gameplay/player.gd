@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 const SPEED = 350.0
-const CREAK_CHANCE: float = 0.05
+const CREAK_CHANCE: float = 0.01
 
 static var instance: Player
 
@@ -15,9 +15,8 @@ var footstep_interval: float = 0.5
 
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var interaction_prompt: Label = $InteractionPrompt
-@onready var footsteps_asp: AudioStreamPlayer = $Footsteps
 
-@export var temp_sfx: PackedScene
+@export var location_footsteps: Dictionary[LocationService.Location, AudioStream]
 @export var wood_creak: AudioStream
 
 
@@ -37,12 +36,16 @@ func _physics_process(delta: float) -> void:
 		# Play footstep sounds when walking
 		footstep_time += delta
 		if footstep_time >= footstep_interval:
-			footsteps_asp.play()
-			# Random chance to play wood creak sound
-			if randf() < CREAK_CHANCE:
-				var sfx := temp_sfx.instantiate()
-				add_child(sfx)
-				sfx.play_at_pos(global_position, wood_creak)
+			var location = LocationService.get_location()
+			var footstep_sound = location_footsteps.get(location)
+
+			if footstep_sound:
+				AudioService.play_sfx(footstep_sound, global_position)
+
+			# Random chance to play wood creak sound only when in Cabin
+			if location == LocationService.Location.CABIN and randf() < CREAK_CHANCE:
+				AudioService.play_sfx(wood_creak, global_position)
+
 			footstep_time = 0.0
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)

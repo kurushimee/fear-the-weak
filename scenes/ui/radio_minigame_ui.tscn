@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bkvvv1uqelhco"]
 
 [ext_resource type="Script" uid="uid://dvprpj136cy2c" path="res://scripts/gameplay/ui/radio_minigame_ui.gd" id="1_minigame"]
-[ext_resource type="AudioStream" uid="uid://dxqwhh873kvx7" path="res://assets/audio/effects/cabin/radio static.wav" id="2_aqwci"]
-[ext_resource type="AudioStream" uid="uid://cjvdmdgfa7wt4" path="res://assets/audio/effects/cabin/radio noise.wav" id="3_221de"]
-[ext_resource type="AudioStream" uid="uid://ndfs11sp4oyg" path="res://assets/audio/effects/cabin/radio tune.wav" id="4_o3b2v"]
+[ext_resource type="AudioStream" uid="uid://dxqwhh873kvx7" path="res://assets/audio/effects/cabin/radio/radio static.wav" id="2_aqwci"]
+[ext_resource type="AudioStream" uid="uid://cjvdmdgfa7wt4" path="res://assets/audio/effects/cabin/radio/radio noise.wav" id="3_221de"]
+[ext_resource type="AudioStream" uid="uid://ndfs11sp4oyg" path="res://assets/audio/effects/cabin/radio/radio tune.wav" id="4_o3b2v"]
 
 [node name="RadioMinigameUI" type="Control"]
 layout_mode = 3

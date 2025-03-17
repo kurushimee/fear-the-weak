@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://3q8i2pl8dgtp" path="res://scenes/player.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bfabasgujf4i8" path="res://scenes/levels/forest/forest.tscn" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bvemusqauijyq" path="res://scenes/ui/screen_fade_effect.tscn" id="4_jyhfs"]
+[ext_resource type="AudioStream" uid="uid://dnrae5k660yvy" path="res://assets/audio/effects/forest/locator/beep.wav" id="5_85g3d"]
+[ext_resource type="AudioStream" uid="uid://baet0yi1yq341" path="res://assets/audio/effects/forest/locator/end.wav" id="6_choun"]
 [ext_resource type="Script" uid="uid://cxis30lful01c" path="res://scripts/gameplay/locator.gd" id="6_tefeu"]
-[ext_resource type="AudioStream" uid="uid://co56ahlqej3r3" path="res://assets/audio/effects/forest/locator/beep2.wav" id="7_85g3d"]
-[ext_resource type="AudioStream" uid="uid://cw5qxsw6eou0m" path="res://assets/audio/effects/forest/locator/end2.wav" id="8_choun"]
 [ext_resource type="AudioStream" uid="uid://1mu0q03nkisb" path="res://assets/audio/effects/forest/locator/new wave finding.wav" id="9_ya4ey"]
 
 [node name="Main" type="Node2D"]
@@ -24,19 +24,10 @@ locator = NodePath("../Locator")
 script = ExtResource("6_tefeu")
 destinations = [NodePath("TestDest")]
 max_distance = 6400.0
+beep_stream = ExtResource("5_85g3d")
+destination_reached_stream = ExtResource("6_choun")
+next_destination_stream = ExtResource("9_ya4ey")
 metadata/_custom_type_script = "uid://cxis30lful01c"
-
-[node name="BeepPlayer" type="AudioStreamPlayer" parent="Locator"]
-stream = ExtResource("7_85g3d")
-bus = &"SFX"
-
-[node name="DestinationReachedPlayer" type="AudioStreamPlayer" parent="Locator"]
-stream = ExtResource("8_choun")
-bus = &"SFX"
-
-[node name="NextDestinationPlayer" type="AudioStreamPlayer" parent="Locator"]
-stream = ExtResource("9_ya4ey")
-bus = &"SFX"
 
 [node name="TestDest" type="Node2D" parent="Locator"]
 position = Vector2(2916, 157)

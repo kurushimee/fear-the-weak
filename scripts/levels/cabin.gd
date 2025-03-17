@@ -2,28 +2,25 @@ extends Node2D
 
 signal exited_cabin
 
-## AnimationPlayer child node of BackgroundMusic.
-@export var background_music_ap: AnimationPlayer
-
-@export var background_music: AudioStreamPlayer
+@export var background_music: AudioStream
 @export var ambience: AudioStreamPlayer
 @export var locator: Locator
 
 
 func reset_audio() -> void:
-	background_music.play()
+	AudioService.play_music(background_music)
 	ambience.play()
-
-
-## Plays the background music after a start delay.
-func _on_start_delay_timeout() -> void:
-	background_music_ap.play(&"fade_in")
-
-
-func _on_door_passed_through() -> void:
-	exited_cabin.emit()
 
 
 ## Called when the radio minigame is completed
 func activate_locator() -> void:
 	locator.activate()
+
+
+## Plays the background music after a start delay.
+func _on_start_delay_timeout() -> void:
+	AudioService.play_music(background_music)
+
+
+func _on_door_passed_through() -> void:
+	exited_cabin.emit()

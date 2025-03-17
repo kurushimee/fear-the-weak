@@ -17,11 +17,15 @@ var current_destination_index: int = -1
 var is_active: bool = false
 var beep_timer: float = 0.0
 var current_beep_delay: float = max_beep_delay
-var is_in_cabin: bool = true
 
 
 func _process(delta: float) -> void:
-	if is_in_cabin or not is_active or current_destination_index == -1:
+	# Only process when in the Forest location
+	if not is_active or current_destination_index == -1:
+		return
+
+	# Skip processing if not in forest
+	if LocationService.get_location() != LocationService.Location.FOREST:
 		return
 
 	var current_destination := get_current_destination()
@@ -39,7 +43,7 @@ func _process(delta: float) -> void:
 
 	# Calculate beep delay based on distance
 	var distance_ratio := clampf((distance - destination_reached_distance) /
-						(max_distance - destination_reached_distance), 0.0, 1.0)
+					(max_distance - destination_reached_distance), 0.0, 1.0)
 	current_beep_delay = lerpf(min_beep_delay, max_beep_delay, distance_ratio)
 
 	# Update beep timer
@@ -68,11 +72,9 @@ func get_current_destination() -> Node2D:
 	return null
 
 
-## Called when player exits the cabin
 func _on_player_exited_cabin() -> void:
-	is_in_cabin = false
+	LocationService.set_location(LocationService.Location.FOREST)
 
 
-## Called when player enters the cabin
 func _on_player_entered_cabin() -> void:
-	is_in_cabin = true
+	LocationService.set_location(LocationService.Location.CABIN)

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ndfs11sp4oyg"
-path="res://.godot/imported/radio tune.wav-965461df58bf576c39a00f1bfd5ade8b.sample"
+path="res://.godot/imported/radio tune.wav-144c69b5d3925757a3553435e574ef7e.sample"
 
 [deps]
 
-source_file="res://assets/audio/effects/cabin/radio tune.wav"
-dest_files=["res://.godot/imported/radio tune.wav-965461df58bf576c39a00f1bfd5ade8b.sample"]
+source_file="res://assets/audio/effects/cabin/radio/radio tune.wav"
+dest_files=["res://.godot/imported/radio tune.wav-144c69b5d3925757a3553435e574ef7e.sample"]
 
 [params]
 

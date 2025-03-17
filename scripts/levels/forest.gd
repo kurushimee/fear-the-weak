@@ -2,13 +2,13 @@ extends Node2D
 
 signal entered_cabin
 
-@export var background_music: AudioStreamPlayer
+@export var background_music: AudioStream
 @export var blizzard: AudioStreamPlayer
 @export var locator: Locator
 
 
 func reset_audio() -> void:
-	background_music.play()
+	AudioService.play_music(background_music)
 	blizzard.play()
 
 

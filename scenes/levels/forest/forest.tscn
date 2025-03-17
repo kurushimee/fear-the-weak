@@ -70,11 +70,11 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_choun")
 
-[node name="Forest" type="Node2D" node_paths=PackedStringArray("background_music", "blizzard")]
+[node name="Forest" type="Node2D" node_paths=PackedStringArray("blizzard")]
 y_sort_enabled = true
 script = ExtResource("1_bkbua")
-background_music = NodePath("Audio/BackgroundMusic")
-blizzard = NodePath("Audio/Blizzard")
+background_music = ExtResource("4_tp8ux")
+blizzard = NodePath("Blizzard")
 
 [node name="Tilemaps" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -100,13 +100,7 @@ destination = NodePath("Exit")
 [node name="Exit" type="Node2D" parent="CabinDoor"]
 position = Vector2(0, -100)
 
-[node name="Audio" type="Node" parent="."]
-
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("4_tp8ux")
-bus = &"Music"
-
-[node name="Blizzard" type="AudioStreamPlayer" parent="Audio"]
+[node name="Blizzard" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_afj37")
 volume_db = -25.0
 bus = &"Background"

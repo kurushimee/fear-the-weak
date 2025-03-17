@@ -4,6 +4,7 @@ signal entered_cabin
 
 @export var background_music: AudioStreamPlayer
 @export var blizzard: AudioStreamPlayer
+@export var locator: Locator
 
 
 func reset_audio() -> void:
@@ -13,3 +14,4 @@ func reset_audio() -> void:
 
 func _on_cabin_door_passed_through() -> void:
 	entered_cabin.emit()
+	locator.deactivate()

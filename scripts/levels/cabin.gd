@@ -7,6 +7,7 @@ signal exited_cabin
 
 @export var background_music: AudioStreamPlayer
 @export var ambience: AudioStreamPlayer
+@export var locator: Locator
 
 
 func reset_audio() -> void:
@@ -21,3 +22,10 @@ func _on_start_delay_timeout() -> void:
 
 func _on_door_passed_through() -> void:
 	exited_cabin.emit()
+
+
+## Called when the radio minigame is completed
+func activate_locator() -> void:
+	if locator:
+		# Activate the next destination in the locator
+		locator.activate()

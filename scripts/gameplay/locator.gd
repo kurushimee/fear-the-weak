@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 
 	# Check if destination reached
 	if distance <= destination_reached_distance:
-		AudioService.play(destination_reached_stream)
+		AudioService.play_sfx(destination_reached_stream)
 		is_active = false
 		return
 
@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 	# Update beep timer
 	beep_timer += delta
 	if beep_timer >= current_beep_delay:
-		AudioService.play(beep_stream)
+		AudioService.play_sfx(beep_stream)
 		beep_timer = 0.0
 
 
@@ -60,7 +60,7 @@ func activate() -> void:
 		return
 
 	current_destination_index += 1
-	AudioService.play(next_destination_stream)
+	AudioService.play_sfx(next_destination_stream)
 	is_active = true
 	beep_timer = 0.0
 

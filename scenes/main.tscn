@@ -30,7 +30,7 @@ next_destination_stream = ExtResource("9_ya4ey")
 metadata/_custom_type_script = "uid://cxis30lful01c"
 
 [node name="TestDest" type="Node2D" parent="Locator"]
-position = Vector2(2916, 157)
+position = Vector2(4196, 179)
 
 [node name="Player" parent="." instance=ExtResource("2_sugp2")]
 position = Vector2(954, 226)

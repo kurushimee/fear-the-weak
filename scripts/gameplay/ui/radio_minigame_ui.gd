@@ -64,6 +64,7 @@ func _process(delta: float) -> void:
 			# Stop audio before completing minigame to prevent audio from playing after completion
 			stop_all_audio()
 			complete_minigame()
+			return
 	else:
 		time_on_frequency = 0.0
 

@@ -9,15 +9,14 @@ extends Node2D
 @export var destination_reached_distance: float = 100.0
 @export var max_distance: float = 1000.0
 
-@onready var beep_player: AudioStreamPlayer = $BeepPlayer
-@onready var destination_reached_player: AudioStreamPlayer = $DestinationReachedPlayer
-@onready var next_destination_player: AudioStreamPlayer = $NextDestinationPlayer
+@export var beep_stream: AudioStream
+@export var destination_reached_stream: AudioStream
+@export var next_destination_stream: AudioStream
 
 var current_destination_index: int = -1
 var is_active: bool = false
 var beep_timer: float = 0.0
 var current_beep_delay: float = max_beep_delay
-# Start assuming player is in cabin - this will be properly set by signals
 var is_in_cabin: bool = true
 
 
@@ -34,30 +33,19 @@ func _process(delta: float) -> void:
 
 	# Check if destination reached
 	if distance <= destination_reached_distance:
-		# Play destination reached sound
-		if destination_reached_player and destination_reached_player.stream:
-			destination_reached_player.play()
-		else:
-			push_warning("Locator: DestinationReachedPlayer or its stream is null")
-
+		AudioService.play(destination_reached_stream)
 		is_active = false
 		return
 
 	# Calculate beep delay based on distance
 	var distance_ratio := clampf((distance - destination_reached_distance) /
-							(max_distance - destination_reached_distance), 0.0, 1.0)
+						(max_distance - destination_reached_distance), 0.0, 1.0)
 	current_beep_delay = lerpf(min_beep_delay, max_beep_delay, distance_ratio)
 
 	# Update beep timer
 	beep_timer += delta
 	if beep_timer >= current_beep_delay:
-		# Play beep sound
-		if beep_player and beep_player.stream:
-			beep_player.play()
-		else:
-			push_warning("Locator: BeepPlayer or its stream is null")
-
-		# Reset timer
+		AudioService.play(beep_stream)
 		beep_timer = 0.0
 
 
@@ -67,19 +55,8 @@ func activate() -> void:
 		push_warning("Locator: No destinations set")
 		return
 
-	if current_destination_index == -1:
-		# First activation
-		current_destination_index = 0
-	else:
-		# Move to next destination
-		current_destination_index = (current_destination_index + 1) % destinations.size()
-
-	# Play activation sound
-	if next_destination_player and next_destination_player.stream:
-		next_destination_player.play()
-	else:
-		push_warning("Locator: NextDestinationPlayer or its stream is null")
-
+	current_destination_index += 1
+	AudioService.play(next_destination_stream)
 	is_active = true
 	beep_timer = 0.0
 

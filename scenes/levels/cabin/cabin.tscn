@@ -166,8 +166,9 @@ tile_set = SubResource("TileSet_20dta")
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Radio" parent="Objects" instance=ExtResource("2_u6nip")]
+[node name="Radio" parent="Objects" node_paths=PackedStringArray("cabin") instance=ExtResource("2_u6nip")]
 position = Vector2(418, 279)
+cabin = NodePath("../..")
 
 [node name="Bed" parent="Objects" instance=ExtResource("5_jfp26")]
 position = Vector2(970, 144)

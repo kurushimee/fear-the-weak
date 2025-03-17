@@ -1,7 +1,6 @@
 class_name Locator
 extends Node2D
 
-signal destination_reached
 
 @export var destinations: Array[Node2D] = []
 
@@ -68,9 +67,6 @@ func _process(delta: float) -> void:
 	if distance <= destination_reached_distance:
 		# Play destination reached sound
 		destination_reached_player.play()
-
-		# Emit signal
-		destination_reached.emit()
 
 		# Deactivate locator
 		deactivate()

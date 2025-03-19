@@ -1,3 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
 
 # General Coding Guidelines
 
@@ -9,17 +14,3 @@
 - Prefer to connect signals in scenes rather than in scripts directly
 - Use `snake_case` for directories and files
 - Use `CamelCase` for Node names
-
-# GDScript Guidelines
-
-- Always use built-in Godot features when available
-- Use *String Name* and *Node Path* literals where applicable
-- Use type hints (`: Type`)
-- Follow official GDScript style guide
-
-# Naming Conventions
-
-- Use `CamelCase` for class names
-- Use `SCREAMING_SNAKE_CASE` for constants
-- Use `snake_case` for variable names
-- Use `snake_case` for function names

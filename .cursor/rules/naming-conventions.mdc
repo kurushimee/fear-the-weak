@@ -1,0 +1,12 @@
+---
+description: 
+globs: *.gd
+alwaysApply: false
+---
+
+# Naming Conventions
+
+- Use `CamelCase` for class names
+- Use `SCREAMING_SNAKE_CASE` for constants
+- Use `snake_case` for variable names
+- Use `snake_case` for function names

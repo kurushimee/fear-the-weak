@@ -1,0 +1,12 @@
+---
+description: 
+globs: *.gd
+alwaysApply: false
+---
+
+# GDScript Guidelines
+
+- Always use built-in Godot features when available
+- Use *String Name* and *Node Path* literals where applicable
+- Use type hints (`: Type`)
+- Follow official GDScript style guide

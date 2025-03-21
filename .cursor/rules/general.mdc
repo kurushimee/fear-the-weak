@@ -6,11 +6,7 @@ alwaysApply: true
 
 # General Coding Guidelines
 
-- Use Godot 4.4 features
-- Use GDScript for all scripts
-- Prioritize readability and maintainability in all code
-- Ensure function and variable names are clear and descriptive
-- Use concise, meaningful comments for complex logic
-- Prefer to connect signals in scenes rather than in scripts directly
-- Use `snake_case` for directories and files
-- Use `CamelCase` for Node names
+- Use TypeScript for all development.
+- Prioritize readability and maintainability in all code.
+- Ensure function and variable names are clear and descriptive.
+- Use concise, meaningful comments for complex logic.

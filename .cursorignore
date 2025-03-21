@@ -1,7 +1,4 @@
 .godot/
 .vscode/
-assets/
-*.uid
-*.svg
 .windsurfrules
 LICENSE

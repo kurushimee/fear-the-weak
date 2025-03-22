@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ry6qq64tv7d0"]
+
+[ext_resource type="Texture2D" uid="uid://bn7j7rggdoblq" path="res://assets/sprites/forest/memory_sites/kitchenette/kitchen-wall.png" id="1_3by82"]
+[ext_resource type="Texture2D" uid="uid://caka6usp8kfkl" path="res://assets/sprites/forest/memory_sites/kitchenette/kitchen-floor.png" id="2_gnyta"]
+[ext_resource type="PackedScene" uid="uid://bxru1560rhhbd" path="res://scenes/levels/forest/memory_sites/kitchenette/fridge.tscn" id="3_gnyta"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmy18"]
+size = Vector2(337, 84)
+
+[node name="Kitchenette" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Wall" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -92)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(3.5, 22)
+shape = SubResource("RectangleShape2D_nmy18")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall"]
+texture = ExtResource("1_3by82")
+
+[node name="Floor" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 100)
+texture = ExtResource("2_gnyta")
+
+[node name="Fridge" parent="." instance=ExtResource("3_gnyta")]
+position = Vector2(-107, -48)

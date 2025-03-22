@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxru1560rhhbd"]
+
+[ext_resource type="Texture2D" uid="uid://batnnnxmvcx37" path="res://assets/sprites/forest/memory_sites/kitchenette/kitchen-furniture.png" id="1_wjkdu"]
+[ext_resource type="Script" uid="uid://dy178k3wrfhwp" path="res://scripts/gameplay/interactable.gd" id="2_gillj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gillj"]
+size = Vector2(64, 94)
+
+[node name="Fridge" type="StaticBody2D"]
+collision_layer = 5
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_gillj")
+
+[node name="ClosedSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_wjkdu")
+region_enabled = true
+region_rect = Rect2(32, 44, 64, 124)
+
+[node name="OpenSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_wjkdu")
+offset = Vector2(3, 0)
+region_enabled = true
+region_rect = Rect2(160, 44, 70, 124)
+
+[node name="Interactable" type="Node" parent="."]
+script = ExtResource("2_gillj")
+interaction_prompt = "открыть холодильник"
+metadata/_custom_type_script = "uid://dy178k3wrfhwp"

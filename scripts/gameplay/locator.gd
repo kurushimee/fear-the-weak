@@ -70,11 +70,3 @@ func get_current_destination() -> Node2D:
 	if current_destination_index >= 0 and current_destination_index < destinations.size():
 		return destinations[current_destination_index]
 	return null
-
-
-func _on_player_exited_cabin() -> void:
-	LocationService.set_location(LocationService.Location.FOREST)
-
-
-func _on_player_entered_cabin() -> void:
-	LocationService.set_location(LocationService.Location.CABIN)

@@ -38,6 +38,4 @@ position = Vector2(954, 226)
 [node name="ScreenFadeEffect" parent="." instance=ExtResource("4_jyhfs")]
 
 [connection signal="exited_cabin" from="Cabin" to="." method="_on_exited_cabin"]
-[connection signal="exited_cabin" from="Cabin" to="Locator" method="_on_player_exited_cabin"]
 [connection signal="entered_cabin" from="Forest" to="." method="_on_entered_cabin"]
-[connection signal="entered_cabin" from="Forest" to="Locator" method="_on_player_entered_cabin"]

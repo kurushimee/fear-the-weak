@@ -21,7 +21,9 @@ func change_location(from: Node2D, to: Node2D) -> void:
 
 func _on_exited_cabin() -> void:
 	change_location(cabin, forest)
+	LocationService.set_location(LocationService.Location.FOREST)
 
 
 func _on_entered_cabin() -> void:
 	change_location(forest, cabin)
+	LocationService.set_location(LocationService.Location.CABIN)
